@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private GameObject catInLobby;
-    private int money;
+    private int money = 0;
 
 
     private void Awake()
@@ -38,8 +38,7 @@ public class GameManager : MonoBehaviour
     // SetÇÔ¼ö
     void SetCatInLobby(GameObject catInLobby)
     {
-        if(catInLobby == null)
-            this.catInLobby = catInLobby;
+        this.catInLobby = catInLobby;
     }
 
     void SetMoney(int money)
