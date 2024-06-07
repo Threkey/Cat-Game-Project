@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private GameObject catInLobby;
     private int money = 0;
 
+    private Vector3 clickPos;
+
 
     private void Awake()
     {
@@ -34,6 +36,12 @@ public class GameManager : MonoBehaviour
         return money;
     }
 
+    Vector3 GetClickPos()
+    {
+        return clickPos;
+    }
+
+
 
     // SetÇÔ¼ö
     void SetCatInLobby(GameObject catInLobby)
@@ -44,5 +52,10 @@ public class GameManager : MonoBehaviour
     void SetMoney(int money)
     {
         this.money = money;
+    }
+
+    void SetClickPos(Vector3 position)
+    {
+        this.clickPos = position;
     }
 }
