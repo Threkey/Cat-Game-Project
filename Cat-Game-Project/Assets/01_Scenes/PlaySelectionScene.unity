@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 339745895}
   - component: {fileID: 339745894}
   m_Layer: 5
-  m_Name: Text_Run
+  m_Name: Text_Running
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Run
+  m_text: 'Running
 
     on a wheel'
   m_isRightToLeft: 0
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 614205346}
   - component: {fileID: 614205345}
   m_Layer: 5
-  m_Name: Button_Sleep
+  m_Name: Button_Sleeping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 808165061}
   - component: {fileID: 808165060}
   m_Layer: 5
-  m_Name: Text_Sleep
+  m_Name: Text_Sleeping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sleep
+  m_text: Sleeping
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1170,7 +1170,7 @@ GameObject:
   - component: {fileID: 978703782}
   - component: {fileID: 978703781}
   m_Layer: 5
-  m_Name: Text_Hunt
+  m_Name: Text_Hunting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hunt
+  m_text: Hunting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 1245837776}
   - component: {fileID: 1245837775}
   m_Layer: 5
-  m_Name: Button_Hunt
+  m_Name: Button_Hunting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1623,7 +1623,7 @@ GameObject:
   - component: {fileID: 1907469762}
   - component: {fileID: 1907469761}
   m_Layer: 5
-  m_Name: Button_Run
+  m_Name: Button_Running
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

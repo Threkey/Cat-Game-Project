@@ -6,7 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private GameObject catInLobby;
+    class Cats
+    {
+        GameObject Cat;
+        int friendship = 0;
+    }
+
     private int money = 0;
 
     private Vector3 clickPos;
@@ -24,12 +29,7 @@ public class GameManager : MonoBehaviour
 
 
     // Get함수
-    GameObject GetCatInLobby()
-    {
-        if(catInLobby == null)
-            return null;
-        else return catInLobby;
-    }
+
 
     int GetMoney()
     {
@@ -44,10 +44,7 @@ public class GameManager : MonoBehaviour
 
 
     // Set함수
-    void SetCatInLobby(GameObject catInLobby)
-    {
-        this.catInLobby = catInLobby;
-    }
+
 
     void SetMoney(int money)
     {

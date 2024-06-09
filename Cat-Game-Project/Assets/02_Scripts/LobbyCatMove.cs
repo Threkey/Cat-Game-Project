@@ -50,7 +50,6 @@ public class LobbyCatMove : MonoBehaviour
             // 목적지와의 거리가 멀면(0.05f 초과) 애니메이션 값 지정, 타이머 초기화
             if (Vector3.Distance(transform.position, destPos) > 0.05f)
             {
-                sitTimer = 0f;
                 anim.SetBool("isSitting", false);
                 anim.SetBool("isMoving", true);
             }
@@ -72,15 +71,17 @@ public class LobbyCatMove : MonoBehaviour
         if(anim.GetBool("isMoving"))
             transform.position += dir.normalized * catSpeed;
 
-        // 목적지에 도달하면 (0.05f 이하) 이동 종료
-        if (Vector3.Distance(transform.position, destPos) <= 0.05f)
+        // 목적지에 도달하면 (0.01f 이하) 이동 종료
+        if (Vector3.Distance(transform.position, destPos) <= 0.01f)
         {
             anim.SetBool("isMoving", false);
+            sitTimer = 0f;
         }
     }
 
     void SitAnimChange()
     {
+        Debug.Log("sit");
         anim.SetBool("isSitting", true);
     }
 }
