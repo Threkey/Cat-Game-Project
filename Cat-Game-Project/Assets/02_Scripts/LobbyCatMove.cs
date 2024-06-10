@@ -27,8 +27,10 @@ public class LobbyCatMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             SetDestination();
 
+        /*
         if (sitTimer >= sitWaitTime)
             SitAnimChange();
+        */
 
         CatMove();
 
@@ -81,7 +83,7 @@ public class LobbyCatMove : MonoBehaviour
 
     void SitAnimChange()
     {
-        Debug.Log("sit");
+        //Debug.Log("sit");
         anim.SetBool("isSitting", true);
     }
 }

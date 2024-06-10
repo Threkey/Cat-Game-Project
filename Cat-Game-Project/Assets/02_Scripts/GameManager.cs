@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     // GetÇÔ¼ö
 
-
     int GetMoney()
     {
         return money;

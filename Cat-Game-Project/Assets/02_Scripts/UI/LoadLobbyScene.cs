@@ -22,7 +22,7 @@ public class LoadLobbyScene : MonoBehaviour
         /*
         if(Input.touchCount > 0)
         {
-            
+        
         }
         */
     }
