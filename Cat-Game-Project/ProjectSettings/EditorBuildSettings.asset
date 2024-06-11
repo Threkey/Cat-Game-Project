@@ -14,4 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/PlaySelectionScene.unity
     guid: 48940d6735fd76547934ee871368deff
+  - enabled: 1
+    path: Assets/01_Scenes/Play/HuntingScene.unity
+    guid: 1c9c3ef91bc66ea44a4923edb0773b30
+  - enabled: 1
+    path: Assets/01_Scenes/Play/RunningScene.unity
+    guid: 70f01ccf9d4ce994d99be0d56bf062fa
+  - enabled: 1
+    path: Assets/01_Scenes/Play/SleepingScene.unity
+    guid: cc930447bb7d2fd4da601fffc10f3be9
+  - enabled: 1
+    path: Assets/01_Scenes/AdoptionScene.unity
+    guid: cc54fa10769b74e4a91f6137190683f6
+  - enabled: 1
+    path: Assets/01_Scenes/CollectionScene.unity
+    guid: 3546617e63305e445b0401628d37639f
   m_configObjects: {}
