@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CollectionSystem : MonoBehaviour
@@ -14,7 +15,7 @@ public class CollectionSystem : MonoBehaviour
     GameObject canvas;
     RectTransform rectTransform;
     Image image, catImage;
-    Button btn;
+    Button btnCat, btnBack;
 
     Vector3 buttonPos = new Vector3(-250f, 80f, 0);
 
@@ -26,13 +27,15 @@ public class CollectionSystem : MonoBehaviour
 
         content = GameObject.Find("Content");
 
+        btnBack = GameObject.Find("Button_Back").GetComponent<Button>();
+        btnBack.onClick.AddListener(LoadLobbyScene);
+
         AddButtons();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LoadLobbyScene()
     {
-        
+        SceneManager.LoadScene("LobbyScene");
     }
 
     void AddButtons()
@@ -40,11 +43,11 @@ public class CollectionSystem : MonoBehaviour
         for(int i = 0; i < gm.GetCatsCount(); i++)
         {
             // 버튼 생성, 컴포넌트 추가
-            btn = new GameObject("Button_" + i).AddComponent<Button>();
-            image = btn.AddComponent<Image>();
-            rectTransform = btn.GetComponent<RectTransform>();
+            btnCat = new GameObject("Button_" + i).AddComponent<Button>();
+            image = btnCat.AddComponent<Image>();
+            rectTransform = btnCat.GetComponent<RectTransform>();
             catImage = new GameObject("Image").AddComponent<Image>();
-            catImage.transform.SetParent(btn.transform);
+            catImage.transform.SetParent(btnCat.transform);
 
             // 버튼 위치
             // 이런 미친 Grid Layout Group, Content Size Fitter라는 너무 편한 컴포넌트가 있었다니
@@ -73,7 +76,7 @@ public class CollectionSystem : MonoBehaviour
             // 컴포넌트 속성 설정
             image.sprite = buttonImage;
             image.type = Image.Type.Sliced;
-            btn.transform.SetParent(content.transform);
+            btnCat.transform.SetParent(content.transform);
             rectTransform.anchoredPosition = buttonPos;
             catImage.sprite = gm.GetCatSprite(i);
             catImage.type = Image.Type.Filled;

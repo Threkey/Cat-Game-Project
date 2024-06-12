@@ -7,12 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject defaultGoCat;
+    public Sprite defaultCatSprite;
+
     class Cat
     {
-        GameObject goCat;
-        int friendship = 0;
-        string name;
-        Sprite sprite;
+        GameObject goCat;      // 고양이 프리팹
+        int friendship = 0;         // 호감도
+        string name;                  // 고양이 이름
+        Sprite sprite;                  // 고양이 이미지 스프라이트
 
         public Cat() { }
         public Cat(GameObject goCat, string name, Sprite sprite)
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
             this.goCat = goCat;
             this.name = name;
             this.sprite = sprite;
+            this.friendship = 0;
         }
 
         public GameObject GetGoCat()
@@ -33,11 +37,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int money = 0;
+    private int money = 0;                                          // 재화
 
-    private Vector3 clickPos;
+    private Vector3 clickPos;                                     // 클릭(터치 위치)
 
-    private List<Cat> cats = new List<Cat>();
+    private List<Cat> cats = new List<Cat>();            // 본인이 입양한 고양이 리스트
 
 
     private void Awake()
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour
             Destroy(Instance);
 
         DontDestroyOnLoad(Instance);
+
+        AddCat(defaultGoCat, defaultCatSprite);
     }
 
 
@@ -98,5 +104,6 @@ public class GameManager : MonoBehaviour
         Cat cat = new Cat(goCat, goCat.name, sprite);
         cats.Add(cat);
         Debug.Log(goCat.name);
+        Debug.Log(cats.Count);
     }
 }

@@ -9,7 +9,8 @@ public class RunningSystem : MonoBehaviour
     Button btnTouch;
 
     float speed = 0f, maxSpeed = 10f;
-    Vector3 wheelRot;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,12 @@ public class RunningSystem : MonoBehaviour
 
         btnTouch = GameObject.Find("Button_Touch").GetComponent<Button>();
         btnTouch.onClick.AddListener(IncreaseSpeed);
-
-        wheelRot = wheel.transform.eulerAngles;
     }
 
     // Update is called once per frame
     void Update()
     {
-        wheelRot.x += speed;
+        
 
         //DecreaseSpeed();
         RollWheel();
@@ -47,7 +46,6 @@ public class RunningSystem : MonoBehaviour
 
     void RollWheel()
     {
-        Debug.Log(wheelRot);
-        wheel.transform.eulerAngles = wheelRot;
+
     }
 }
