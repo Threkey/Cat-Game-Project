@@ -2,6 +2,7 @@ using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,16 @@ public class GameManager : MonoBehaviour
         {
             return sprite;
         }
+
+        public int GetFriendship()
+        {
+            return friendship;
+        }
+
+        public void AddFriendship(int friendship)
+        {
+            this.friendship += friendship;
+        }
     }
 
     private int money = 0;                                          // 재화
@@ -46,14 +57,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
-        else if(Instance != this)
+        else if (Instance != this)
             Destroy(Instance);
 
         DontDestroyOnLoad(Instance);
 
         AddCat(defaultGoCat, defaultCatSprite);
+
+        PlayerPrefs.SetInt("LobbyCatIndex", 0);
+        PlayerPrefs.SetInt("PlayCatIndex", 0);
     }
 
 
@@ -81,6 +95,18 @@ public class GameManager : MonoBehaviour
         else return null;
     }
 
+    public GameObject GetGoCat(int index)
+    {
+        GameObject tmp = cats[index].GetGoCat();
+        return tmp;
+    }
+
+    public int GetFriendship(int index)
+    {
+        int tmp = cats[index].GetFriendship();
+        return tmp;
+    }
+
 
 
     // Set함수
@@ -106,4 +132,17 @@ public class GameManager : MonoBehaviour
         Debug.Log(goCat.name);
         Debug.Log(cats.Count);
     }
+
+    public void AddMoney(int money)
+    {
+        Debug.Log("Money");
+        this.money += money;
+    }
+
+    public void AddFriendship(int  friendship, int index)
+    {
+        Debug.Log("Friendship");
+        cats[index].AddFriendship(friendship);
+    }
+
 }

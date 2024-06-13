@@ -3,37 +3,58 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class SleepingControll : MonoBehaviour
 {
-    GameObject stick, bar, zone;
+    GameManager gm;
 
-    TextMeshProUGUI textTimer, textScore, textCountdown, textResultScore, textResultFriendship;
-    GameObject panelResult;
+    GameObject cat, stick;
 
-    float speed = 0.01f;
-    float time = 30f;
+    TextMeshProUGUI textTimer, textScore, textCountdown, textResultScore, textResultFriendship, textMoney;
+    public GameObject panelResult, panelReady;
+
+    Button btnOk;
+
+    Vector3 catPos = new Vector3(-1f, 0f, 0f);
+    Vector3 catRot = new Vector3(0f, 90f, 0f);
+    Quaternion catQuat;
+
+    public float speed = 0.01f;
+    public float time = 30f;
     int friendship = 0;
     public int score = 0;
+    int money;
     int countdown;
+
+    bool isUpdated = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        stick = GameObject.Find("Stick");
-        bar = GameObject.Find("Bar");
-        zone = GameObject.Find("CorrectZone");
+        gm = GameManager.Instance;
 
+        catQuat = Quaternion.Euler(catRot);
+
+        stick = GameObject.Find("Stick");
         textTimer = GameObject.Find("Text_Timer").GetComponent<TextMeshProUGUI>();
         textScore = GameObject.Find("Text_Score").GetComponent<TextMeshProUGUI>();
         textCountdown = GameObject.Find("Text_Countdown").GetComponent<TextMeshProUGUI>();
         panelResult = GameObject.Find("Canvas").transform.Find("Panel_Result").gameObject;
+        panelReady = GameObject.Find("Canvas").transform.Find("Panel_Ready").gameObject;
         textResultScore = panelResult.transform.Find("Text_ResultScore").gameObject.GetComponent<TextMeshProUGUI>();
         textResultFriendship = panelResult.transform.Find("Text_ResultFriendship").gameObject.GetComponent<TextMeshProUGUI>();
+        textMoney = panelResult.transform.Find("Text_Money").gameObject.GetComponent <TextMeshProUGUI>();
+        btnOk = panelResult.transform.Find("Button_Ok").GetComponent <Button>();
+
+        btnOk.onClick.AddListener(LoadLobbyScene);
 
         StartCoroutine(coCountdown());
+
+        cat = Instantiate(gm.GetGoCat(PlayerPrefs.GetInt("PlayCatIndex")), catPos, catQuat);
     }
 
     // Update is called once per frame
@@ -53,7 +74,7 @@ public class SleepingControll : MonoBehaviour
         }
 
         // 결과창이 나오면 타이머랑 텍스트 업데이트를 멈추고 결과창 내용 업데이트
-        else if (panelResult.activeSelf == true)
+        else if (panelResult.activeSelf == true && !isUpdated)
         {
             UpdateResult();
         }
@@ -91,11 +112,16 @@ public class SleepingControll : MonoBehaviour
     void UpdateTextCountdown()
     {
         if (countdown == 0)
+        {
+            time = 30f;
             textCountdown.text = "Go!";
+        }
+
         else if (countdown == -1)
         {
             textCountdown.gameObject.SetActive(false);
-            time = 30f;
+            panelReady.SetActive(false);
+            
         }
         else
             textCountdown.text = countdown.ToString();
@@ -107,16 +133,28 @@ public class SleepingControll : MonoBehaviour
         textResultScore.text = "Score: " + score;
         friendship = score * 2;
         textResultFriendship.text = "Friendship: " + friendship;
+        money = score;
+        textMoney.text = "Money: " + money;
+
+        gm.AddMoney(money);
+        gm.AddFriendship(friendship, PlayerPrefs.GetInt("PlayCatIndex"));
+
+        isUpdated = true;
+    }
+
+    void Judge()
+    {
+        
     }
 
     // 스틱이 speed만큼 움직임, bar의 끝에 닿을 때마다 방향 전환
     void MoveStick()
     {
-        if(stick.transform.position.x < -1.5f)
+        if (stick.transform.position.x < -1.5f)
         {
             speed = -speed;
         }
-        else if(stick.transform.position.x > 1.5f)
+        else if (stick.transform.position.x > 1.5f)
         {
             speed = -speed;
         }
@@ -124,9 +162,9 @@ public class SleepingControll : MonoBehaviour
         stick.transform.Translate(speed, 0f, 0f);
     }
 
-    void Judge()
+    void LoadLobbyScene()
     {
-        
+        SceneManager.LoadScene("LobbyScene");
     }
 
 

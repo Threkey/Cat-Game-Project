@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,8 +52,9 @@ public class PlaySelectionUI : MonoBehaviour
 
         content = panelCatSelect.transform.Find("Scroll View").Find("Viewport").Find("Content").gameObject;
 
-        AddButtons();
+
     }
+
 
     void AddButtons()
     {
@@ -73,21 +76,23 @@ public class PlaySelectionUI : MonoBehaviour
             catImage.type = Image.Type.Filled;
             catImage.rectTransform.sizeDelta = new Vector2(90f, 90f);
 
+            int index = i;
+
             switch (mode)
             {
                 case GameMode.Hunting:
                     {
-                        btnCat.onClick.AddListener(LoadHuntingScene);
+                        btnCat.onClick.AddListener(delegate { LoadHuntingScene(index); });
                         break;
                     }
                 case GameMode.Running:
                     {
-                        btnCat.onClick.AddListener(LoadRunningScene);
+                        btnCat.onClick.AddListener(delegate { LoadRunningScene(index); });
                         break;
                     }
                 case GameMode.Sleeping:
                     {
-                        btnCat.onClick.AddListener(LoadSleepingScene);
+                        btnCat.onClick.AddListener(delegate { LoadSleepingScene(index); });
                         break;
                     }
                 default:
@@ -118,23 +123,27 @@ public class PlaySelectionUI : MonoBehaviour
         SceneManager.LoadScene("LobbyScene");
     }
 
-    void LoadHuntingScene()
+    void LoadHuntingScene(int index)
     {
+        PlayerPrefs.SetInt("PlayCatIndex", index);
         SceneManager.LoadScene("HuntingScene");
     }
 
-    void LoadSleepingScene()
+    void LoadSleepingScene(int index)
     {
+        PlayerPrefs.SetInt("PlayCatIndex", index);
         SceneManager.LoadScene("SleepingScene");
     }
 
-    void LoadRunningScene()
+    void LoadRunningScene(int index)
     {
+        PlayerPrefs.SetInt("PlayCatIndex", index);
         SceneManager.LoadScene("RunningScene");
     }
 
     void PopupCatSelectPanel()
     {
         panelCatSelect.SetActive(true);
+        AddButtons();
     }
 }

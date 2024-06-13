@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LobbyCatMove : MonoBehaviour
 {
@@ -17,9 +19,14 @@ public class LobbyCatMove : MonoBehaviour
     void Update()
     {
         //sitTimer += Time.deltaTime;
-
-        if (Input.GetMouseButtonDown(0))
+        if (SceneManager.GetActiveScene().name == "SleepingScene")
+            anim.SetBool("isSitting", true);
+        else if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            anim.SetBool("isSitting", false);
             SetDestination();
+        }
+
 
         CatMove();
     }

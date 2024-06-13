@@ -81,6 +81,15 @@ public class CollectionSystem : MonoBehaviour
             catImage.sprite = gm.GetCatSprite(i);
             catImage.type = Image.Type.Filled;
             catImage.rectTransform.sizeDelta = new Vector2(90f, 90f);
+
+            int index = i;
+            btnCat.onClick.AddListener(delegate { SelectCat(index); });
         }
+    }
+
+    void SelectCat(int index)
+    {
+        PlayerPrefs.SetInt("LobbyCatIndex", index);
+        SceneManager.LoadScene("LobbyScene");
     }
 }
