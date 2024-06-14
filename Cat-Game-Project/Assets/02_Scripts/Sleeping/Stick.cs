@@ -23,7 +23,7 @@ public class Stick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(system.speed == 0f)
+        if(system.GetSpeed() == 0f)
         {
             rb.isKinematic = false;
         }
@@ -39,12 +39,13 @@ public class Stick : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                system.score--;
+                if(system.score != 0)
+                    system.score--;
                 Debug.Log("click");
-                speed = system.speed;
-                system.speed = 0f;
+                speed = system.GetSpeed();
+                system.SetSpeed(0f);
                 yield return new WaitForSeconds(0.5f);
-                system.speed = speed;
+                system.SetSpeed(speed);
             }
             else
                 yield return null;

@@ -49,30 +49,6 @@ public class CollectionSystem : MonoBehaviour
             catImage = new GameObject("Image").AddComponent<Image>();
             catImage.transform.SetParent(btnCat.transform);
 
-            // 버튼 위치
-            // 이런 미친 Grid Layout Group, Content Size Fitter라는 너무 편한 컴포넌트가 있었다니
-            /*
-            if(i % 4 == 0)
-            {
-                buttonPos.x = -250f;
-                if(i != 0)
-                {
-                    // 스크롤뷰 컨텐츠 영역 늘림
-                    
-                    Vector2 contentRect = content.GetComponent<RectTransform>().offsetMin;
-                    contentRect.y -= 120f;
-                    content.GetComponent<RectTransform>().offsetMin = contentRect;
-                    
-                    buttonPos.y -= 120f;
-                }
-
-            }
-            else
-            {
-                buttonPos.x += 150f;
-            }
-            */
-
             // 컴포넌트 속성 설정
             image.sprite = buttonImage;
             image.type = Image.Type.Sliced;
@@ -81,6 +57,7 @@ public class CollectionSystem : MonoBehaviour
             catImage.sprite = gm.GetCatSprite(i);
             catImage.type = Image.Type.Filled;
             catImage.rectTransform.sizeDelta = new Vector2(90f, 90f);
+            rectTransform.localScale = Vector3.one;
 
             int index = i;
             btnCat.onClick.AddListener(delegate { SelectCat(index); });

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -22,7 +22,7 @@ public class SleepingControll : MonoBehaviour
     Vector3 catRot = new Vector3(0f, 90f, 0f);
     Quaternion catQuat;
 
-    public float speed = 0.01f;
+    public float speed;
     public float time = 30f;
     int friendship = 0;
     public int score = 0;
@@ -160,11 +160,22 @@ public class SleepingControll : MonoBehaviour
         }
 
         stick.transform.Translate(speed, 0f, 0f);
+        Debug.Log(speed);
     }
 
     void LoadLobbyScene()
     {
         SceneManager.LoadScene("LobbyScene");
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
 

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class LobbyCatMove : MonoBehaviour
 {
     public Animator anim;
-    float catSpeed = 0.001f;
+    float catSpeed = 0.01f;
     //float sitTimer = 0f, sitWaitTime = 2f;          // 앉기 타이머, 앉을 때 까지의 시간
 
     Vector3 destPos;            // 목적지

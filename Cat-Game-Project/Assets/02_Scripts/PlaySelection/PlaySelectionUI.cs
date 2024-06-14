@@ -75,6 +75,7 @@ public class PlaySelectionUI : MonoBehaviour
             catImage.sprite = gm.GetCatSprite(i);
             catImage.type = Image.Type.Filled;
             catImage.rectTransform.sizeDelta = new Vector2(90f, 90f);
+            rectTransform.localScale = Vector3.one;
 
             int index = i;
 
